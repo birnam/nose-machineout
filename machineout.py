@@ -6,6 +6,7 @@ import os
 import re
 import traceback
 from nose.plugins import Plugin
+from builtins import str
 
 class DummyStream:
 
@@ -84,7 +85,7 @@ class NoseMachineReadableOutput(Plugin):
 
     def add_formatted(self, etype, err):
         exctype, value, tb = err
-        if (isinstance(value, basestring) and 
+        if (isinstance(value, str) and 
                 value.startswith(u'Failed doctest test')):
             m = doctest_value_pattern.search(value)
             fname, lineno, funname, example, expected, got = m.groups()
